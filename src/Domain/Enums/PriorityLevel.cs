@@ -8,5 +8,10 @@ namespace Domain.Enums
 {
     public enum PriorityLevel
     {
+        NiceToHave = 0,
+        Low,
+        Medium,
+        High,
+
     }
 }
