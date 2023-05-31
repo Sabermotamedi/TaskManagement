@@ -8,5 +8,10 @@ namespace Domain.Enums
 {
     public enum StatusState
     {
+        Unknown,
+        BackLog,
+        ToDo,
+        InProgress,
+        Done
     }
 }
