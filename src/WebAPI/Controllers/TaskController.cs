@@ -1,4 +1,8 @@
 using Application.Services.Task.Commands.CreateTask;
+using Application.Services.Task.Commands.DeleteTask;
+using Application.Services.Task.Commands.UpdateTask;
+using Application.Services.Task.Queries.GetTask;
+using Application.Services.Task.Queries.GetTaskById;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -16,37 +20,36 @@ namespace WebAPI.Controllers
         [HttpGet(Name = nameof(GetTask))]
         public async Task<IActionResult> GetTask()
         {
-
-            return Ok(true);
+            var Tasks = await Mediator.Send(new GetTaskQuery());
+            return Ok(Tasks);
         }
 
         [HttpGet("{id:int}", Name = nameof(GetTaskById))]
         public async Task<IActionResult> GetTaskById(int id)
         {
-
-            return Ok(true);
+            var Task = await Mediator.Send(new GetTaskByIdQuery() { Id = id });
+            return Ok(Task);
         }
 
         [HttpPost(Name = nameof(AddTask))]
         public async Task<IActionResult> AddTask(CreateTaskCommand task)
         {
             var vm = await Mediator.Send(task);
-
             return Ok(true);
         }
 
         [HttpPut(Name = nameof(UpdateTask))]
-        public async Task<IActionResult> UpdateTask(CreateTaskCommand task)
+        public async Task<IActionResult> UpdateTask(UpdateTaskCommand task)
         {
             var vm = await Mediator.Send(task);
-
-            return Ok(true);
+            return Ok(vm);
         }
 
         [HttpDelete("{id:int}", Name = nameof(DeleteTask))]
         public async Task<IActionResult> DeleteTask(int id)
         {
-            return Ok(true);
+            var vm = await Mediator.Send(new DeleteTaskCommand() { Id = id });
+            return Ok(vm);
         }
 
     }
