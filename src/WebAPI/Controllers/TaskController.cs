@@ -32,25 +32,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost(Name = nameof(AddTask))]
-        public async Task<IActionResult> AddTask(CreateTaskCommand task)
-        {
-            var vm = await Mediator.Send(task);
-            return Ok(true);
-        }
+        public async Task<IActionResult> AddTask(CreateTaskCommand task) => Ok(await Mediator.Send(task));
 
         [HttpPut(Name = nameof(UpdateTask))]
-        public async Task<IActionResult> UpdateTask(UpdateTaskCommand task)
-        {
-            var vm = await Mediator.Send(task);
-            return Ok(vm);
-        }
+        public async Task<IActionResult> UpdateTask(UpdateTaskCommand task) => Ok(await Mediator.Send(task));
 
         [HttpDelete("{id:int}", Name = nameof(DeleteTask))]
-        public async Task<IActionResult> DeleteTask(int id)
-        {
-            var vm = await Mediator.Send(new DeleteTaskCommand() { Id = id });
-            return Ok(vm);
-        }
+        public async Task<IActionResult> DeleteTask(int id) => Ok(await Mediator.Send(new DeleteTaskCommand() { Id = id }));
 
     }
 }
