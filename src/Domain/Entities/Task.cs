@@ -11,6 +11,16 @@ namespace Domain.Entities
 {
     public class Task : BaseEntity
     {
+        public Task(string name, string description, TaskType type, PriorityLevel priority, StatusState status, DateTime dueDate)
+        {
+            Name = name;
+            Description = description;
+            Type = type;
+            Priority = priority;
+            Status = status;
+            DueDate = dueDate;
+        }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public TaskType Type { get; set; }

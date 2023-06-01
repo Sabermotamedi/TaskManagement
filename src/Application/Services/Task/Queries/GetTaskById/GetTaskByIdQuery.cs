@@ -1,4 +1,4 @@
-﻿using Application.Models;
+﻿using Application.Models.Task;
 using MediatR;
 using System;
 using System.Collections.Generic;

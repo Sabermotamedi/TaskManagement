@@ -1,4 +1,4 @@
-﻿using Application.Interface;
+﻿using Application.Common.Interface;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -20,15 +20,8 @@ namespace Application.Services.Task.Commands.CreateTask
 
         public async Task<int> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            var task = new Domain.Entities.Task();
-
-            task.Name = request.Name;
-            task.Description = request.Description;
-            task.Status = request.Status;
-            task.Priority = request.Priority;
-            task.Type = request.Type;
-            task.Status = request.Status;
-
+            var task = new Domain.Entities.Task(request.Name,request.Description,request.Type,request.Priority,request.Status,request.DueDate);
+          
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync(cancellationToken);
 

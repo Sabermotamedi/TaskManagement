@@ -1,4 +1,4 @@
-﻿using Application.Interface;
+﻿using Application.Common.Interface;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

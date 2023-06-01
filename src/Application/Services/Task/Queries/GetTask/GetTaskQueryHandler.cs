@@ -1,5 +1,7 @@
-﻿using Application.Models;
+﻿using Application.Common.Interface;
+using Application.Models.Task;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,18 @@ namespace Application.Services.Task.Queries.GetTask
 {
     public class GetTaskQueryHandler : IRequestHandler<GetTaskQuery, List<TaskDto>>
     {
-        public Task<List<TaskDto>> Handle(GetTaskQuery request, CancellationToken cancellationToken)
+        private readonly IApplicationDbContext _context;
+
+        public GetTaskQueryHandler(IApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<List<TaskDto>> Handle(GetTaskQuery request, CancellationToken cancellationToken)
+        {
+            var res = await _context.Tasks.ToListAsync();
+            return res.ToDto();
+
         }
     }
 }
