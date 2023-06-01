@@ -1,21 +1,11 @@
-﻿using Application.Interface;
-using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace Application.Services.Task.Commands.CreateTask
 {
-    internal class CreatTaskCommandValidator : AbstractValidator<CreateTaskCommand>
+    public class CreatTaskCommandValidator : AbstractValidator<CreateTaskCommand>
     {
-        private readonly IApplicationDbContext _context;
-
-        public CreatTaskCommandValidator(IApplicationDbContext context)
+        public CreatTaskCommandValidator()
         {
-            _context = context;
-
             RuleFor(v => v.Name)
                 .NotEmpty().WithMessage("Name is required.")
                 .MaximumLength(100).WithMessage("Title must not exceed 100 characters.");
