@@ -1,0 +1,28 @@
+<div class="container ">
+<table class="table" *ngIf=" tasks && tasks.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Type</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>   
+      <tr *ngFor="let task of tasks">
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.name}}</td>
+        <td>{{task.description}}</td>
+        <td>{{task.type}}</td>
+        <td>{{task.priority}}</td>
+        <td>{{task.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf=" !tasks || tasks.length == 0" >
+        There is no tasks
+  </p>
+</div>
